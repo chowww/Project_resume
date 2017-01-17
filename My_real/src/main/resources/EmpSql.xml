@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper 
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace = "ProfileDao">
+	
+	<select id = "selectAllList" resultType="profile">
+		SELECT * FROM profile
+	</select>
+	
+	<select id="selectProfile" parameterType="profile" resultType="profile" >
+		SELECT * FROM profile 
+		<if test = "name != null "> WHERE NAME = #{name} </if>
+		<if test = "profile_id != 0 "> WHERE profile_id = #{profile_id:INTEGER} </if>
+	</select>
+	
+	<select id="selectEducation" parameterType="int" resultType="education" >
+		SELECT * FROM education 
+	    WHERE profile_id = #{profile_id:INTEGER}
+	</select>
+	
+	<select id="selectObjective" parameterType="int" resultType="objective" >
+		SELECT * FROM objective 
+	    WHERE profile_id = #{profile_id:INTEGER}
+	</select>
+	
+	<select id="selectExperience" parameterType="int" resultType="experience" >
+		SELECT * FROM experience 
+	    WHERE profile_id = #{profile_id:INTEGER}
+	</select>
+	
+	<select id="selectActivity" parameterType="int" resultType="activity" >
+		SELECT * FROM activity
+	    WHERE profile_id = #{profile_id:INTEGER}
+	</select>
+	
+	<select id="selectSkill" parameterType="int" resultType="skill" >
+		SELECT * FROM skill
+	    WHERE profile_id = #{profile_id:INTEGER}
+	</select>
+	
+	<select id="selectVolunteer" parameterType="int" resultType="volunteer" >
+		SELECT * FROM volunteer
+	    WHERE profile_id = #{profile_id:INTEGER}
+	</select>
+	
+	<!-- <insert id="insertEmp" parameterType="profile">
+		INSERT INTO EMP VALUES (#{empno:INTEGER},#{ename},#{job},#{mgr:INTEGER},#{hireDate},#{sal:INTEGER},#{comm:INTEGER},#{deptno:INTEGER})
+	</insert> -->
+	
+	
+	<insert id="insertProfile" parameterType="profile">
+		INSERT INTO Profile VALUES (profile_id.NEXTVAL, #{name},#{address},#{email})
+	</insert>
+	
+	<insert id="insertActivity" parameterType="activity">
+		INSERT INTO Activity VALUES (activity_id.NEXTVAL, profile_id.currval, #{a_contents}, #{a_daystart}, #{a_dayend}, #{a_location})
+	</insert>
+	
+	<insert id="insertEducation" parameterType="education">
+		INSERT INTO Education VALUES (education_id.NEXTVAL, profile_id.currval, #{school}, #{city}, #{major}, #{gpa}, #{honor}, #{g_date})
+	</insert>
+	
+	<insert id="insertExperience" parameterType="experience">
+		INSERT INTO Experience VALUES (experience_id.NEXTVAL, profile_id.currval, #{exp_daystart}, #{exp_dayend}, #{exp_location}, #{e_contents})
+	</insert>
+	
+	<insert id="insertObjective" parameterType="objective">
+		INSERT INTO Objective VALUES (objective_id.NEXTVAL, profile_id.currval, #{o_contents})
+	</insert>
+	
+	<insert id="insertSkill" parameterType="skill">
+		INSERT INTO Skill VALUES (skill_id.NEXTVAL, profile_id.currval, #{s_contents})
+	</insert>
+	
+	<insert id="insertVolunteer" parameterType="volunteer">
+		INSERT INTO Volunteer VALUES (volunteer.NEXTVAL, profile_id.currval, #{v_contents})
+	</insert>
+</mapper>

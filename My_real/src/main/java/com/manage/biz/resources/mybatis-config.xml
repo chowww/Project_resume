@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+	<settings>
+		<setting name="logImpl" value="LOG4J"/>
+	</settings>
+	
+	<typeAliases>
+		<typeAlias type="com.manage.biz.vo.Profile" alias="profile"/>
+		<typeAlias type="com.manage.biz.vo.Education" alias="education"/>
+		<typeAlias type="com.manage.biz.vo.Objective" alias="objective"/>
+		<typeAlias type="com.manage.biz.vo.Experience" alias="experience"/>
+		<typeAlias type="com.manage.biz.vo.Activity" alias="activity"/>
+		<typeAlias type="com.manage.biz.vo.Skill" alias="skill"/>
+		<typeAlias type="com.manage.biz.vo.Volunteer" alias="volunteer"/>
+	</typeAliases>
+	
+	
+	
+	
+	<mappers>
+		<mapper resource = "EmpSql.xml" />
+	</mappers>
+</configuration>
